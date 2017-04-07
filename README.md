@@ -1,2 +1,6 @@
 # otus_java_2017_04
-For otus.ru by Vsevolod Alexeenko (Всеволод Алексеенко)
+Группа 2017-04
+
+Created by Vsevolod Alexeenko (Всеволод Алексеенко)
+
+alexeenko.vsevolod@gmail.com
