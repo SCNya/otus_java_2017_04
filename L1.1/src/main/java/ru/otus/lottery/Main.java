@@ -87,7 +87,7 @@ public class Main {
             // drizer84
             // dinoradrau
         }
-        catch(IOException e) {
+        catch(Exception e) {
             e.printStackTrace();
         }
     }
