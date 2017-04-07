@@ -89,15 +89,12 @@
                 <configuration>
                     <proguardVersion>5.3.2</proguardVersion>
                     <obfuscate>true</obfuscate>
-                    <includeDependency>true</includeDependency>
                     <injar>${project.name}_${java.version}_${os.name}.jar</injar>
                     <options>
-                        <option>-ignorewarnings</option>
                         <option>-keepclasseswithmembers public class * { public static void main(java.lang.String[]); }</option>
                     </options>
                     <outjar>${project.name}_${java.version}_${os.name}_final.jar</outjar>
 
-                    <attach>false</attach>
                     <outputDirectory>${project.build.directory}</outputDirectory>
                     <libs>
                         <lib>${java.home}/lib/rt.jar</lib>
