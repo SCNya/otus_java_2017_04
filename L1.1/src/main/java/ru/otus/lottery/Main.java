@@ -2,7 +2,8 @@ package ru.otus.lottery;
 
 import au.com.bytecode.opencsv.CSVReader;
 
-import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,7 @@ public class Main {
 
         System.out.println("Reading emails from: " + pathToFile);
 
-        try (CSVReader reader = new CSVReader(new FileReader(pathToFile))) {
+        try (CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(pathToFile), "UTF-8"))) {
             List<String> emails = reader.readAll().stream().map(line -> line[0].trim()).collect(Collectors.toList());
 
             System.out.println("Emails count: " + emails.size());
