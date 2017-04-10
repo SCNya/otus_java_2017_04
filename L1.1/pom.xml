@@ -26,6 +26,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <net.sf.opencsv.version>2.3</net.sf.opencsv.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -75,6 +76,24 @@
             </plugin>
 
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>maven-jar-plugin</id>
+                        <phase>prepare-package</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>ru.otus.lottery.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>com.github.wvengen</groupId>
                 <artifactId>proguard-maven-plugin</artifactId>
                 <version>2.0.14</version>
@@ -89,10 +108,21 @@
                 <configuration>
                     <proguardVersion>5.3.2</proguardVersion>
                     <obfuscate>true</obfuscate>
-                    <injar>${project.name}_${java.version}_${os.name}.jar</injar>
+                    <injar>java-2017-04-L1-1.0-SNAPSHOT.jar</injar>
                     <options>
-                        <option>-keepclasseswithmembers public class * { public static void main(java.lang.String[]); }</option>
+                       <option>-keepclasseswithmembers public class * { public static void main(java.lang.String[]); }</option>
+                        <option>-keep,includedescriptorclasses class javax.** { *; }</option>
+                        <option>-keep,includedescriptorclasses class org.** { *; }</option>
+                        <option>-allowaccessmodification</option>
+                        <option>-keepclassmembers class * implements java.io.Serializable</option>
+                        <option>-keepattributes *Annotation*</option>
+                        <option>-keepattributes Signature</option>
+                        <option>-dontwarn</option>
                     </options>
+
+                    <includeDependency>true</includeDependency>
+                    <includeDependencyInjar>true</includeDependencyInjar>
+
                     <outjar>${project.name}_${java.version}_${os.name}_final.jar</outjar>
 
                     <outputDirectory>${project.build.directory}</outputDirectory>
